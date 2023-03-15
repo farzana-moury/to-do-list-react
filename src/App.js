@@ -4,7 +4,7 @@ import Todo from "./components/Todo";
 
 function App(props) {
   const taskList = props.tasks?.map((task) => (
-  <Todo id={task.id} name={task.name} completed={task.completed}/>
+    <Todo id={task.id} name={task.name} completed={task.completed} key={task.id} />
   ));
   return (
     <div className="todoapp stack-large">
@@ -48,7 +48,7 @@ function App(props) {
         role="list"
         className="todo-list stack-large stack-exception"
         aria-labelledby="list-heading">
-        
+
         {taskList}
       </ul>
     </div>
