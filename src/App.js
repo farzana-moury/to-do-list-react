@@ -15,9 +15,13 @@ function App(props) {
       name={task.name} 
       completed={task.completed}
       key={task.id} 
-      toggleTaskCompleted = {toggleTaskCompleted}
+      toggleTaskCompleted={toggleTaskCompleted}
+      deleteTask={deleteTask}
     />
   ));
+
+  const tasksNoun = taskList.length !== 1 ? 'tasks' : 'task';
+  const headingText = `${taskList.length} ${tasksNoun} remaining`;
 
   function addTask(name) {
     const newTask = {id: `todo-${nanoid()}`, name, completed: false};
@@ -37,8 +41,11 @@ function App(props) {
     setTasks(updatedTasks);
   }
 
-  const tasksNoun = taskList.length !== 1 ? 'tasks' : 'task';
-  const headingText = `${taskList.length} ${tasksNoun} remaining`;
+  function deleteTask(id) {
+    const remainingTasks = tasks.filter((task) => id !== task.id);
+    setTasks(remainingTasks);
+  }
+  
   
   return (
     <div className="todoapp stack-large">
